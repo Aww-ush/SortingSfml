@@ -1,4 +1,4 @@
-#include "Button.h"
+#include "Button.cpp"
 #include <vector>
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -12,6 +12,6 @@ public:
     RectangleButton();
     RectangleButton(float length, float width);
     void SetArea(vector<float> dimensions) override;
-    sf::Shape GetShape() override; 
+    sf::Shape* GetShape() override; 
 };
 

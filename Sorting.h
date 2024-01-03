@@ -11,6 +11,7 @@ private:
 public:
     Sorting(/* args */);
     ~Sorting();
+    
 };
 
 Sorting::Sorting(/* args */)

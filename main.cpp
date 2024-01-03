@@ -1,47 +1,51 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <vector> // Include the vector header
 
 using namespace std;
+
+const float THICKNESS = 50.f;
+
+void FillVector(vector<float> &vec) // Pass vector by reference
+{
+    // fill the vector with random numbers
+    for (int i = 0; i < 20; i++)
+    {
+        vec.push_back(rand() % 500 + 100);
+    }
+}
+
+// Pass window by reference and vector by reference
+void DrawRectangles(const vector<float> &vec, sf::RenderWindow &window)
+{
+    for (int i = 0; i < vec.size(); i++)
+    {
+        sf::RectangleShape rectangle(sf::Vector2f(THICKNESS, vec[i]));
+        rectangle.setPosition(50.f + i * (THICKNESS + 10.f), 50.f); // Adjust position
+        window.draw(rectangle);
+    }
+}
+
 int main()
 {
-    // create the window
-    //create a button 
-    // create a area where the button is if the mouse is pressed in the area then the button is pressed
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "My window");
-    sf::RectangleShape rectangle(sf::Vector2f(120.f, 50.f));
-    rectangle.setPosition(10.f, 50.f);
-    rectangle.move(5.f, 5.f);
-    rectangle.setRotation(45.f);
-    rectangle.rotate(10.f);
-    sf::CircleShape shape(50.f);
-    sf::Texture texture;
-    sf::Sprite sprite;
-    sprite.setTexture(texture);
-    if (!texture.loadFromFile("image.png"))
-    {
-        cout << "error loading texture" << endl;
-    }
-    // transforming the entity
+    vector<float> vec;
+    FillVector(vec);
+
     window.setVerticalSyncEnabled(true);
-    // run the program as long as the window is open
+
     while (window.isOpen())
     {
-        // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        // clear the window with black color
         window.clear(sf::Color::Black);
+        DrawRectangles(vec, window);
 
-        // draw everything here...
-        window.draw(rectangle);
-
-        // end the current frame
         window.display();
     }
 

@@ -20,8 +20,8 @@ protected:
     string text;
 
 public:
-    virtual sf::Shape GetShape() = 0;  
-    void SetArea(vector<float> dimensions);
+    virtual sf::Shape* GetShape() = 0;  
+    void virtual SetArea(vector<float> dimensions);
     vector<float> GetArea();
     void SetPressed(bool pressed);
     bool GetPressed();
