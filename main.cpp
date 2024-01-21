@@ -21,7 +21,7 @@ void DrawRectangles(const vector<float> &vec, sf::RenderWindow &window)
     for (int i = 0; i < vec.size(); i++)
     {
         sf::RectangleShape rectangle(sf::Vector2f(THICKNESS, vec[i]));
-        rectangle.setPosition(50.f + i * (THICKNESS + 10.f), 50.f); // Adjust position
+        rectangle.setPosition(50.f + i * (THICKNESS + 10.f), -50.f); // Adjust position
         window.draw(rectangle);
     }
 }
